@@ -33,6 +33,7 @@ fn main()->io::Result<()>  {
                          .unwrap_or(0);
 
         for sub_array in result {
+            //println!("{:?}", sub_array);
             for (color, count) in sub_array {
                 if color == "red" && count > 12 {
                     found = true;
@@ -49,7 +50,7 @@ fn main()->io::Result<()>  {
             }
         }
 
-        if found == true {
+        if found == false {
             println!("{:?}", game_value);
             total = total + game_value;
         }
@@ -77,7 +78,8 @@ fn parseline(line: &str) -> Vec<Vec<(&str,i32)>>
                     result.push(vec![("Game", val)]);               
             }
         } else { 
-            let sparts = line.trim().split(';').collect::<Vec<_>>();
+            let sparts = part.trim().split(';').collect::<Vec<_>>();
+            //println!("{:?}", sparts);
             for subpart in sparts{
                 let color_counts = subpart.trim().split(',')
                 .filter_map(|kv| {
